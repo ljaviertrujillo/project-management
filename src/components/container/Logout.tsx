@@ -1,8 +1,10 @@
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { PublicRoutes } from "../models"
-import { resetUser, userKey } from "../redux/states/user"
-import { clearLocalStorage } from "../utilities"
+import { PublicRoutes } from "../../models"
+import { resetUser, userKey } from "../../redux/states/user"
+import { clearLocalStorage } from "../../utilities"
+import { UtilityButton } from "../pure"
+import { ButtonType } from "../pure/ButtonUser"
 
 function Logout() {
     const navigate = useNavigate()
@@ -15,9 +17,7 @@ function Logout() {
     }
 
   return (
-    <button onClick={logOut}>
-      Logout
-    </button>
+    <UtilityButton type={ButtonType.Large} title='Logout' handle={logOut} />
   )
 }
 

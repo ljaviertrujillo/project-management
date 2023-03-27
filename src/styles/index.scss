@@ -1,0 +1,27 @@
+@import './globalVariables.scss';
+
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: $BackGroundPrimary;
+  color: $Font;
+}
+
+a{
+  text-decoration: none;
+}
+
+button{
+  background-color: transparent;
+  border: none;
+}
+
+.content{
+  height: 100vh;
+  padding: 5rem 1rem 1rem 6rem;
+}

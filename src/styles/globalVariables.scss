@@ -1,0 +1,16 @@
+@mixin transition ($value){
+    transition: $value .2s ease-in-out;
+}
+
+@mixin ButtonHover ($colorShadow, $color){
+    box-shadow: .1rem .1rem .5rem $colorShadow;
+    color: $color;
+}
+
+$BackGroundPrimary: #D1D2D4;
+$ComponentBackGround: #F8F8F9;
+$ElementBackGround: #949599;
+$Font: #282828;
+$InteractivePrimary: #007CF2;
+$InteractiveSecondary: #15607B;
+$InteractiveComplementary: #F2AA1F;

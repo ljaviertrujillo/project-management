@@ -1,20 +1,15 @@
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthGuard } from "./guards";
-import { PrivateRoutes, PublicRoutes } from "./models";
-import { lazy, Suspense } from "react";
+import { PublicRoutes } from "./models";
+import { Login } from "./pages/Login";
+import { Private } from "./pages/Private";
 import store from "./redux/store";
 import { RoutesWithNotFound } from "./utilities";
-import { NavLink } from "react-router-dom";
-
-const Login = lazy(() => import('./pages/Login/Login'))
-const Private = lazy(() => import('./pages/Private/Private'))
-const NotFound = lazy(() => import('./pages/NotFound/NotFound'))
 
 function App() {
   return (
     <div className="App">
-      <Suspense fallback={<>Loading</>}>
         <Provider store={store}>
           <BrowserRouter>
             <RoutesWithNotFound>
@@ -25,7 +20,6 @@ function App() {
             </RoutesWithNotFound>
           </BrowserRouter>
         </Provider>
-      </Suspense>
     </div>
   );
 }

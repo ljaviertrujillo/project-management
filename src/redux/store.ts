@@ -1,13 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { UserInterface } from "../models";
-import  userSliceReducer  from './states/user';
+import { ProjectInterface } from '../models/project.model';
+import  userReducer  from './states/user';
+import projectSliceReducer, { ProjectState } from './states/project';
 
 export interface AppStore {
-    user: UserInterface;
+    user: UserInterface,
+    project: ProjectState
 }
 
 export default configureStore<AppStore>({
     reducer: {
-        user: userSliceReducer
-    }
+        user: userReducer,
+        project: projectSliceReducer
+      }
 })

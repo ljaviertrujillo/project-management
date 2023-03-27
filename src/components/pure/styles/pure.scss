@@ -1,0 +1,154 @@
+@import "../../../styles/globalVariables.scss";
+
+.route-view {
+  display: flex;
+  margin: 2rem 0;
+  justify-content: space-between;
+  align-items: center;
+  .route-link {
+    display: flex;
+    align-items: center;
+    gap: calc((4rem - 2rem) / 2);
+    @include transition(background);
+    &.active {
+      background: linear-gradient(
+        90deg,
+        $BackGroundPrimary 0%,
+        transparent 100%
+      );
+      .active-bar {
+        background-color: $InteractivePrimary;
+      }
+      .route {
+        color: $InteractivePrimary;
+      }
+    }
+    .active-bar {
+      height: 3rem;
+      width: 0.25rem;
+      border-radius: 0.125rem;
+      background-color: transparent;
+      @include transition(color);
+    }
+    .route {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      text-align: left;
+      white-space: nowrap;
+      gap: 0.5rem;
+      width: 2.5rem;
+      color: $ElementBackGround;
+      transition: all 0.2s ease-in-out;
+      &.expanded {
+        width: 8rem;
+      }
+      &:hover {
+        color: $InteractivePrimary;
+      }
+      .label {
+        width: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        @include transition(width);
+      }
+      .icon {
+        font-size: 2rem;
+      }
+    }
+  }
+  .route-submenu {
+    opacity: 0;
+    @include transition(opacity);
+    &.expanded {
+      cursor: pointer;
+      opacity: 1;
+      .icon {
+        font-size: 1.25rem;
+        color: $ElementBackGround;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          color: $Font;
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: $ElementBackGround;
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+  color: $Font;
+  transition: all 0.2s ease-in-out;
+  font-size: 1.25rem;
+  &:hover {
+    @include ButtonHover($ElementBackGround, $InteractiveSecondary);
+  }
+}
+
+.user-button {
+  border-radius: 100%;
+  cursor: pointer;
+
+  &.large {
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    font-weight: 700;
+    background-color: $ElementBackGround;
+    transition: all .2s ease-in-out;
+    &:hover {
+      @include ButtonHover($ElementBackGround, $InteractiveSecondary);
+    }
+  }
+
+  .small {
+  }
+}
+
+.add-button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:$InteractiveSecondary;
+    color: $BackGroundPrimary;
+    border-radius: .5rem;
+    transition: all .2s ease-in-out;
+    &.large{
+        width: 10rem;
+        padding: .5rem .5rem;
+        font-weight: 500;
+        font-size: 1.15rem;
+        &:hover{
+            @include ButtonHover($ElementBackGround, $ElementBackGround);
+        }
+    }
+}
+
+.utility-button{
+    cursor: pointer;
+    &.large{
+        display: flex;
+        align-items: center;
+        font-size: 1.125rem;
+        gap: .75rem;
+        color: $Font;
+        .icon{
+            color: $ElementBackGround;
+        }
+
+    }
+    &.small{
+        font-size: 1.5rem;
+        @include transition(opacity);
+        &:hover{
+            opacity: .5;
+            
+        }
+    }
+}
