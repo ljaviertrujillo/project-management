@@ -1,10 +1,11 @@
 import { db } from './index';
 import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
+import { ProjectInterface } from '../../models';
 
-// export const addNewProject = async project => {
-//     const newProject = JSON.parse(JSON.stringify(project))
-//     await addDoc(collection(db, 'projects'), newProject)
-// }
+export const addNewProject = async (project: ProjectInterface) => {
+    const newProject = JSON.parse(JSON.stringify(project))
+    await addDoc(collection(db, 'projects'), newProject)
+}
 
 export const getProjects = async () => {
     const querySnapshot = await getDocs(collection(db, 'projects'))
@@ -30,15 +31,15 @@ export const getProjects = async () => {
     return projectsData
 }
 
-// export const deleteProject = async id => {
-//     await deleteDoc(doc(db, 'projects', id))
-// }
+export const deleteProject = async (id: string) => {
+    await deleteDoc(doc(db, 'projects', id))
+}
 
-// export const favoriteProject = async (id, favorite) => {
-//     await updateDoc(doc(db, 'projects', id), {
-//         favorite: !favorite
-//     })
-// }
+export const favoriteProject = async (id: string, favorite: boolean) => {
+    await updateDoc(doc(db, 'projects', id), {
+        favorite: !favorite
+    })
+}
 
 // export const addNewTask = async (task) => {
 //     const projectRef = doc(db, 'projects', task.projectId)

@@ -1,52 +1,42 @@
 import "./styles/container.scss";
 import { useLocation, useMatch } from "react-router-dom";
 import { features, PrivateRoutes, settings } from "../../models";
-import { BackButton, ButtonUser, ProgressBar, UserOptions, UtilityButton } from "../pure";
+import { BackButton, ButtonUser, HamburguerButton, ProgressBar, UserOptions, UtilityButton } from "../pure";
 import { ButtonType } from "../pure/ButtonUser";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { ProjectContext } from "../../context";
+import { PageContext } from "../../context/PageContext";
 
 function Nav() {
-  const [openOptions, setOpenOptions] = useState<boolean>(false)
+  const { OpenUserOptions } = useContext(PageContext)
   const location = useLocation();
   const projectMath = useMatch("projects/:id");
   const labelPage =
     features.find((feature) => feature.url === location.pathname) ||
     settings.find((setting) => setting.url === location.pathname);
 
-    // const [windowDimensions, setWindowDimensions] = useState<{ width: number, height: number }>({
-    //   width: window.innerWidth,
-    //   height: window.innerHeight,
-    // });
-  
-    // useEffect(() => {
-    //   function handleResize() {
-    //     setWindowDimensions({
-    //       width: window.innerWidth,
-    //       height: window.innerHeight,
-    //     });
-    //   }
-  
-    //   window.addEventListener('resize', handleResize);
-  
-    //   return () => window.removeEventListener('resize', handleResize);
-    // }, []);
-
   return (
     <nav className="nav">
       <div className="nav-content">
-        {projectMath?.pathname === null || location.pathname === '/profile' ? (
+        <div className="nav-header">
+          <HamburguerButton />
+        {projectMath?.pathname !== undefined || location.pathname === '/profile' ? (
           <BackButton route={location.pathname==='/profile' ? '/' : PrivateRoutes.PROJECTS}/>
         ) : (
           <span className="page-label">{labelPage?.label}</span>
         )}
-        <ProgressBar />
-        <div className="utilities">
-          <UtilityButton type={ButtonType.Small} title='Calendar' />
-          <UtilityButton type={ButtonType.Small} title='Notifications' />
-          <ButtonUser type={ButtonType.Large} handle={() => setOpenOptions(!openOptions)} />
+        </div>
+        
+        {projectMath?.pathname !== undefined ? <ProgressBar /> : null}
+        <div className="footer">
+          <div className="utilities">
+            <UtilityButton type={ButtonType.Small} title='Calendar' />
+            <UtilityButton type={ButtonType.Small} title='Notifications' />
+          </div>
+          <ButtonUser type={ButtonType.Large} handle={OpenUserOptions} />
         </div>
       </div>
-      <UserOptions openOptions={openOptions} />
+      <UserOptions />
     </nav>
   );
 }

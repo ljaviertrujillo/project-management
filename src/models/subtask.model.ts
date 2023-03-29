@@ -1,5 +1,7 @@
 export interface SubtaskInterface{
-    id: string,
+    id?: string,
+    projectId: string,
+    taskId: string,
     title: string,
     completed: boolean
 }

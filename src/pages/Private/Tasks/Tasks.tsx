@@ -1,6 +1,10 @@
+import { useContext } from "react"
+import { PageContext } from "../../../context/PageContext"
+
 function Tasks() {
+  const { showSideBar } = useContext(PageContext)
   return (
-    <div>
+    <div onClick={() => showSideBar(false)}>
       Tasks
     </div>
   )

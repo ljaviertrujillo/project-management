@@ -19,6 +19,7 @@ export enum PRIORITY{
 }
 
 export interface ProjectInterface {
+    id?: string,
     title: string,
     description: string,
     startDate: string,

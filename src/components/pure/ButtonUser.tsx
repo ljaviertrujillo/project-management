@@ -6,12 +6,7 @@ export enum ButtonType{
   Small = 'small'
 }
 
-interface Props {
-  type: ButtonType
-  handle: () => void
-}
-
-function User({type, handle}: Props) {
+function User({type, handle}: {type: ButtonType, handle: () => void}) {
   return (
     <button
         type="button"

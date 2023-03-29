@@ -1,94 +1,189 @@
-@import './../../../styles/globalVariables.scss';
+@import "./../../../styles/globalVariables.scss";
 
-.sidebar{
-    position: fixed;
-    width: 5rem;
-    padding-right: .5rem;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background-color: $ComponentBackGround;
-    box-shadow: .1rem 0 .5rem $ElementBackGround;
-    @include transition(width);
-    z-index: 2;
-    &.expanded{
-        width: 12rem;
+.sidebar {
+  position: fixed;
+  width: 5rem;
+  padding-right: 0.5rem;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: $ComponentBackGround;
+  box-shadow: 0.1rem 0 0.5rem $ElementBackGround;
+  @include transition(width);
+  z-index: 2;
+  &:hover {
+    width: 12rem;
+    .route{
+      width: 8rem;
     }
+  }
 
-    .logo{
-        height: 10vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+  .logo {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .close-button{
+      border-radius: .125rem;
+      font-size: 1.25rem;
+      width: 2rem;
+      padding: 0 .5rem;
+      display: none;
+      cursor: pointer;
+      &:hover{
+        background-color: $BackGroundPrimary;
+        @include ButtonHover(rgba(148, 149, 153, .5), $ElementBackGround)
+      }
     }
-    .routes{
-        height: 90vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+  }
+  .routes {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
-.nav{
-    position: relative;
-    .nav-content{
-        position: fixed;
+.nav {
+  position: relative;
+  .nav-content {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    top: 0;
+    left: 5rem;
+    right: 0;
+    z-index: 1;
+    padding: 1rem 2rem;
+    background-color: $BackGroundPrimary;
+    .nav-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .footer {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      .utilities {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 4rem;
-        top: 0;
-        left: 5rem;
-        right: 0;
-        z-index: 1;
-        padding: 1rem;
-        background-color: $BackGroundPrimary;
-        .utilities{
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+        gap: 1rem;
+      }
+    }
 
-        .page-label{
-            color: $Font;
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
+    .page-label {
+      color: $Font;
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+  }
+  .user-options {
+    background-color: $ComponentBackGround;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(148, 149, 153, .5);
+    top: 4rem;
+    right: 0rem;
+    width: 15rem;
+    height: auto;
+    transition: all 0.2s ease-in-out;
+    background-color: $ComponentBackGround;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 2;
+    &.expanded {
+      opacity: 1;
+      transform-origin: top right;
+      transform: translate3d(-1rem, 1rem, 0);
+      visibility: visible;
+      width: 15rem;
+      .options {
+        width: 100%;
+      }
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      border-top: 1px solid $BackGroundPrimary;
+      &.utilities{
+        display: none;
+      }
+    }
+  }
+}
+
+.secondary-menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid $ElementBackGround;
+  padding: 1rem;
+  .menu{
+    display: flex;
+    gap: 2rem;
+    .menu-option{
+      font-size: 1.5rem;
+      color: $ElementBackGround;
+      cursor: pointer;
+      @include transition(color);
+      &.active{
+        cursor: default;
+        font-weight: 600;
+        color: $InteractiveSecondary;
+      }
+      &:hover{
+        color: $InteractiveSecondary;
+
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    left: -15rem;
+    width: 15rem;
+    &:hover{
+      width: 15rem;
+    }
+    transition: all .2s ease-in-out;
+    .route{
+        width: 8rem; 
+      }
+    &.expanded{
+      left: 0;
+      
+    }
+    .logo{
+      .close-button{
+      display: block;
+    }
+    }
+    
+    &.expanded{
+      left: 0;
+    }
+  }
+  .nav {
+    .nav-content {
+      left: 0;
+      .utilities {
+        visibility: hidden;
+      }
     }
     .user-options{
-        background-color: $ComponentBackGround;
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        border-radius: 1rem;
-        top: 4rem;
-        right: 0rem;
-        width: 15rem;
-        height: 11rem;
-        transition: all .2s ease-in-out;
-        background-color: azure;
-        visibility: hidden;
-        opacity: 0;
-        &.expanded{
-            opacity: 1;
-            transform-origin: top right;
-            transform: translate3d(-.5rem, .5rem, 0);
-            visibility: visible;
-            width: 15rem;
-            height: 11rem;
-            .options{
-                width: 100%;
+        .options{
+            &.utilities{
+                display: block;
             }
         }
-
-        .options{
-            display:flex;
-            flex-direction: column;
-            gap: .5rem;
-            padding: .75rem;
-            border-top: 1px solid $BackGroundPrimary;
-
-            
-        }
     }
+  }
 }

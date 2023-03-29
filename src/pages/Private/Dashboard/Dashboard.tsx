@@ -1,8 +1,11 @@
+import { useContext } from "react"
 import Logout from "../../../components/container/Logout"
+import { PageContext } from "../../../context/PageContext"
 
 function Dashboard() {
+  const {showSideBar} = useContext(PageContext)
   return (
-    <div>
+    <div onClick={() => showSideBar(false)}>
       Dashboard
       
     </div>
